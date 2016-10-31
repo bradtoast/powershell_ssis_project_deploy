@@ -14,7 +14,7 @@
 # ************************************************************************************
    
 $environment = "DEV"
-$BaseDir = "C:\ssis_projects\Project1\bin\Development"
+$BaseDir = ".\Project1\bin\Development" #replace with your base path if different.
 $ProjectName = "Project1"
 $SourceConnectionString = "Data Source=(local);Initial Catalog=Source;Provider=SQLNCLI11.1;Integrated Security=SSPI;"
 $TargetConnectionString = "Data Source=(local);Initial Catalog=Target;Provider=SQLNCLI11.1;Integrated Security=SSPI;"
