@@ -13,15 +13,16 @@
 #  Required Setup: The machine on which this script runs must have SSIS installed.
 # ************************************************************************************
    
-$environment = "DEV"
+$environment = "DEV" # your environment name
+$SSISCatalogServer = "(local)" #replace with the server housing your SSIS Catalog
 $BaseDir = ".\Project1\bin\Development" #replace with your base path if different.
-$ProjectName = "Project1"
-$SourceConnectionString = "Data Source=(local);Initial Catalog=Source;Provider=SQLNCLI11.1;Integrated Security=SSPI;"
-$TargetConnectionString = "Data Source=(local);Initial Catalog=Target;Provider=SQLNCLI11.1;Integrated Security=SSPI;"
+$ProjectName = "Project1" #your project name
+$SourceConnectionString = "Data Source=(local);Initial Catalog=Source;Provider=SQLNCLI11.1;Integrated Security=SSPI;" #just an example of a variable
+$TargetConnectionString = "Data Source=(local);Initial Catalog=Target;Provider=SQLNCLI11.1;Integrated Security=SSPI;" #another example
 
 $IsPacFilePath = "${BaseDir}\${ProjectName}.ispac"
 $IntegrationServicesCatalog = "SSISDB"
-$FolderName = "ETL"
+$FolderName = "ETL" #Just a folder name in the SSIS Catalog
 
 if (!(Test-Path $IsPacFilePath)) {	
 	Write-Host "Error: $IsPacFilePath does not exist."
@@ -35,7 +36,7 @@ if (!(Test-Path $IsPacFilePath)) {
 $ISNamespace = "Microsoft.SqlServer.Management.IntegrationServices"
  
 # Create a connection to the server
-$sqlConnectionString = "Data Source=(local);Initial Catalog=master;Integrated Security=SSPI;"
+$sqlConnectionString = "Data Source=${SSISCatalogServer};Initial Catalog=master;Integrated Security=SSPI;"
 
 $sqlConnection = New-Object System.Data.SqlClient.SqlConnection $sqlConnectionString
 try {		
